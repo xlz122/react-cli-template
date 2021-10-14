@@ -27,7 +27,8 @@ function AppRouter(): React.ReactElement {
         render={() => (
           <div className="main">
             <Link to="/">home | </Link>
-            <Link to="/about">about</Link>
+            <Link to="/about">about  | </Link>
+            <Link to="/not-fountd">not-fountd</Link>
             <Suspense fallback={<div></div>}>{renderRoutes(routes)}</Suspense>
           </div>
         )}

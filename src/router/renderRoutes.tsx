@@ -13,6 +13,7 @@ function renderRoutes(
   if (routes.length === 0) {
     return false;
   }
+
   return (
     <Switch>
       {routes.map(route => (
