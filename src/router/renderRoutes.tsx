@@ -6,10 +6,7 @@ import type { Props } from '@/types/index';
  * @descriptio 渲染路由
  * @param { Array } - routes 路由数据
  */
-function renderRoutes(
-  routes: Routes[] = [],
-  redirectRoute: string = '/404'
-): React.ReactElement | boolean {
+function renderRoutes(routes: Routes[] = []): React.ReactElement | boolean {
   if (routes.length === 0) {
     return false;
   }
@@ -20,7 +17,7 @@ function renderRoutes(
         <Route
           key={route.name}
           path={route.path}
-          exact={route.meta && route.meta.exact}
+          exact={route.exact}
           render={(props: Props) =>
             route.render ? (
               route.render({ ...props, route: route.children })
@@ -31,7 +28,7 @@ function renderRoutes(
         />
       ))}
       <Redirect exact from="/" to="/home" />;
-      <Redirect to={redirectRoute} />
+      <Redirect to="/404" />
     </Switch>
   );
 }

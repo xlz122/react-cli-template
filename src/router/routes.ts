@@ -3,9 +3,7 @@ import React from 'react';
 export type Routes = {
   path: string;
   name: string;
-  meta?: {
-    exact?: boolean;
-  };
+  exact?: boolean;
   component: React.ComponentType<{ route?: Routes[] }>;
   children?: Routes[];
   render?: Function;
@@ -25,18 +23,14 @@ const routes: Routes[] = [
       {
         path: '/about',
         name: 'about',
-        meta: {
-          exact: true
-        },
-        component: React.lazy(() => import('../views/about//bar/Bar'))
+        exact: true,
+        component: React.lazy(() => import('../views/about/bar/Bar'))
       },
       {
         path: '/about/foo',
         name: 'about-foo',
-        meta: {
-          exact: true
-        },
-        component: React.lazy(() => import('../views/about//foo/Foo'))
+        exact: true,
+        component: React.lazy(() => import('../views/about/foo/Foo'))
       }
     ]
   }
