@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import renderRoutes from '@router/renderRoutes';
-import type { Props } from '@/types/index';
+import { Link, Outlet } from 'react-router-dom';
 
-function About(props: Props): React.ReactElement {
+function About(): React.ReactElement {
   return (
-    <div className="about">
-      <p>about page</p>
-      <Link to="/about">about/bar | </Link>
+    <>
+      <p>嵌套路由示例</p>
+      <Link to="/about/bar">about/bar | </Link>
       <Link to="/about/foo">about/foo</Link>
-      {renderRoutes(props.route)}
-    </div>
+      <Outlet />
+    </>
   );
 }
 

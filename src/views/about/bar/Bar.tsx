@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Bar(): React.ReactElement {
-  return <div className="bar">bar page</div>;
+  return <p>bar page</p>;
 }
 
 export default Bar;

@@ -1,13 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function NotFound(): React.ReactElement {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   setTimeout(() => {
-    history.push({ pathname: '/home' });
+    navigate('/');
   }, 3000);
-  return <div className="not-found">未找到该页面，将在3秒后返回首页...</div>;
+  return <p>未找到该页面，将在3秒后返回首页...</p>;
 }
 
 export default NotFound;

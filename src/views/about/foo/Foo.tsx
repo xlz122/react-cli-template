@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Foo(): React.ReactElement {
-  return <div className="foo">foo page</div>;
+  return <p>foo page</p>;
 }
 
 export default Foo;
