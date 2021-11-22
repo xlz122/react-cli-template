@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import Home from '../views/Home';
 import Basic from '../views/basic/Basic';
 import LazyLoading from '../views/lazy-loading/LazyLoading';
@@ -45,6 +45,8 @@ function AppRouter(): React.ReactElement {
             <Route index element={<Default />} />
             <Route path="/about/bar" element={<Bar />} />
             <Route path="/about/foo" element={<Foo />} />
+            {/* 重定向示例 */}
+            <Route path="*" element={<Navigate to="/use-navigate" />} />
           </Route>
 
           {/* 直接嵌套，parent route 的 path 不用加* */}

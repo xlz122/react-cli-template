@@ -1,4 +1,4 @@
-import { Link, useRoutes, Outlet } from 'react-router-dom';
+import { Link, Navigate, useRoutes, Outlet } from 'react-router-dom';
 import Home from '../views/Home';
 import Basic from '../views/basic/Basic';
 import LazyLoading from '../views/lazy-loading/LazyLoading';
@@ -28,7 +28,8 @@ export default function Element() {
           children: [
             { index: true, element: <Default /> },
             { path: '/about/bar', element: <Bar /> },
-            { path: '/about/foo', element: <Foo /> }
+            { path: '/about/foo', element: <Foo /> },
+            { path: '*', element: <Navigate to="/use-navigate" /> }
           ]
         },
         { path: '/nested-route/*', element: <NestedRoute /> },

@@ -6,7 +6,8 @@ function About(): React.ReactElement {
     <>
       <p>嵌套路由示例</p>
       <Link to="/about/bar">about/bar | </Link>
-      <Link to="/about/foo">about/foo</Link>
+      <Link to="/about/foo">about/foo | </Link>
+      <Link to="/about/xlz122">重定向</Link>
       <Outlet />
     </>
   );
