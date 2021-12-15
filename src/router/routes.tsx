@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, Navigate, useRoutes, Outlet } from 'react-router-dom';
 import Home from '../views/Home';
 import Basic from '../views/basic/Basic';
@@ -11,6 +12,8 @@ import Parameter from '../views/parameter/Parameter';
 import SearchParams from '../views/search-params/SearchParams';
 import Auth from '../views/auth/Auth';
 import UseNavigate from '../views/use-navigate/UseNavigate';
+import UseOutletContext from '../views/use-outlet-context/UseOutletContext';
+import NavLink from '../views/nav-link/NavLink';
 import NotFound from '../views/not-found/NotFound';
 
 export default function Element() {
@@ -36,7 +39,9 @@ export default function Element() {
         { path: '/parameter/:id', element: <Parameter userId={1} /> },
         { path: '/search-params', element: <SearchParams /> },
         { path: '/auth/*', element: <Auth /> },
-        { path: '/use-navigate', element: <UseNavigate /> }
+        { path: '/use-navigate', element: <UseNavigate /> },
+        { path: '/use-outlet-context', element: <UseOutletContext /> },
+        { path: '/nav-link', element: <NavLink /> }
       ]
     },
     { path: '*', element: <NotFound /> }
@@ -46,6 +51,8 @@ export default function Element() {
 }
 
 function Layout(): React.ReactElement {
+  const [count, setCount] = useState(0);
+
   return (
     <>
       <Link to="/">首页 | </Link>
@@ -56,8 +63,10 @@ function Layout(): React.ReactElement {
       <Link to="/parameter/123" state={{ name: 'xyc' }}>携带参数 | </Link>
       <Link to="/search-params?name=xyc">url ?拼接参数 | </Link>
       <Link to="/auth">权限验证 | </Link>
-      <Link to="/use-navigate">useNavigate</Link>
-      <Outlet />
+      <Link to="/use-navigate">useNavigate | </Link>
+      <Link to="/use-outlet-context">useOutletContext | </Link>
+      <Link to="/nav-link">NavLink</Link>
+      <Outlet context={[count, setCount]} />
     </>
   );
 }

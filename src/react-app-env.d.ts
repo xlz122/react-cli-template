@@ -79,3 +79,7 @@ declare module 'lodash';
 declare interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function;
 }
+
+declare function useOutletContext<
+  Context = unknown
+>(): Context;

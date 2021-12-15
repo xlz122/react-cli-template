@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import Home from '../views/Home';
 import Basic from '../views/basic/Basic';
@@ -12,6 +12,8 @@ import Parameter from '../views/parameter/Parameter';
 import SearchParams from '../views/search-params/SearchParams';
 import Auth from '../views/auth/Auth';
 import UseNavigate from '../views/use-navigate/UseNavigate';
+import UseOutletContext from '../views/use-outlet-context/UseOutletContext';
+import NavLink from '../views/nav-link/NavLink';
 import NotFound from '../views/not-found/NotFound';
 // 常规JavaScript对象写法
 // import Element from './routes';
@@ -63,6 +65,12 @@ function AppRouter(): React.ReactElement {
 
           {/* useHistory */}
           <Route path="/use-navigate" element={<UseNavigate />} />
+
+          {/* useOutletContext */}
+          <Route path="/use-outlet-context" element={<UseOutletContext />} />
+
+          {/* NavLink */}
+          <Route path="/nav-link" element={<NavLink />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -77,6 +85,8 @@ function AppRouter(): React.ReactElement {
  * @param { String } target _self | _blank | _parent | _top
 */
 function Layout(): React.ReactElement {
+  const [count, setCount] = useState(0);
+
   return (
     <>
       <Link to="/">首页 | </Link>
@@ -87,8 +97,10 @@ function Layout(): React.ReactElement {
       <Link to="/parameter/123" state={{ name: 'xyc' }}>携带参数 | </Link>
       <Link to="/search-params?name=xyc">url ?拼接参数 | </Link>
       <Link to="/auth">权限验证 | </Link>
-      <Link to="/use-navigate">useNavigate</Link>
-      <Outlet />
+      <Link to="/use-navigate">useNavigate | </Link>
+      <Link to="/use-outlet-context">useOutletContext | </Link>
+      <Link to="/nav-link">NavLink</Link>
+      <Outlet context={[count, setCount]} />
     </>
   );
 }
