@@ -1,4 +1,9 @@
+## 环境要求
 
+需要 NodeJS 14.0.0+ 环境
+
+![](./src/assets/design-sketch/npm-6.14.4.svg)
+![](./src/assets/design-sketch/node-14.0.0.svg)
 ### 简介
 
 本项目是一个配置好route、redux的react cli模板。

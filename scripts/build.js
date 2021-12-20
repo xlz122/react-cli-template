@@ -14,7 +14,6 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../config/env');
 
-
 const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const fs = require('fs-extra');
@@ -49,6 +48,17 @@ const writeStatsJson = argv.indexOf('--stats') !== -1;
 
 // Generate configuration
 const config = configFactory('production');
+
+// 路径别名
+const alias = {
+  '@': path.resolve(__dirname, '../src'),
+  '@router': path.resolve(__dirname, '../src/router'),
+  '@store': path.resolve(__dirname, '../src/store'),
+  '@utils': path.resolve(__dirname, '../src/utils'),
+  '@views': path.resolve(__dirname, '../src/views'),
+};
+
+config.resolve.alias = Object.assign(config.resolve.alias, { ...alias });
 
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
@@ -177,13 +187,19 @@ function build(previousFileSizes) {
           process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
-        console.log(
-          chalk.yellow(
-            '\nTreating warnings as errors because process.env.CI = true.\n' +
-              'Most CI servers set it automatically.\n'
-          )
+        // Ignore sourcemap warnings in CI builds. See #8227 for more info.
+        const filteredWarnings = messages.warnings.filter(
+          w => !/Failed to parse source map/.test(w)
         );
-        return reject(new Error(messages.warnings.join('\n\n')));
+        if (filteredWarnings.length) {
+          console.log(
+            chalk.yellow(
+              '\nTreating warnings as errors because process.env.CI = true.\n' +
+                'Most CI servers set it automatically.\n'
+            )
+          );
+          return reject(new Error(filteredWarnings.join('\n\n')));
+        }
       }
 
       const resolveArgs = {
