@@ -70,6 +70,8 @@ declare module '*.module.sass' {
   export default classes;
 }
 
+declare module 'react-dom';
+
 declare module 'react-router';
 
 declare module 'react-router-dom';
