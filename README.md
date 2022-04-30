@@ -10,7 +10,6 @@
 
 ## 项目使用技术栈
 
-本项目使用到的技术栈如下：
 * React全家桶
 * Redux
 * TypeScript
