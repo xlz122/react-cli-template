@@ -4,18 +4,17 @@
 
 ![](./src/assets/design-sketch/npm-6.14.4.svg)
 ![](./src/assets/design-sketch/node-14.0.0.svg)
-### 简介
+## 简介
 
 本项目是一个配置好route、redux的react cli模板。
 
-### 项目使用技术栈
+## 项目使用技术栈
 
-本项目使用到的技术栈如下：
 * React全家桶
 * Redux
 * TypeScript
 
-### 项目运行
+## 项目说明
 
 启动项目
 
