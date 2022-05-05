@@ -14,7 +14,7 @@
 * Redux
 * TypeScript
 
-## 项目说明
+## 运行
 
 启动项目
 
