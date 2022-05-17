@@ -14,7 +14,10 @@ import store from '@/store/index';
 //   document.getElementById('root')
 // );
 
-const root = createRoot(document.getElementById('root') as Element);
+const root = createRoot(
+  document.getElementById('root') as HTMLElement
+);
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
