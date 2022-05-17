@@ -14,6 +14,7 @@ import Auth from '../views/auth/Auth';
 import UseNavigate from '../views/use-navigate/UseNavigate';
 import UseOutletContext from '../views/use-outlet-context/UseOutletContext';
 import NavLink from '../views/nav-link/NavLink';
+import Redux from '../views/redux/redux';
 import NotFound from '../views/not-found/NotFound';
 // 常规JavaScript对象写法
 // import Element from './routes';
@@ -71,6 +72,9 @@ function AppRouter(): React.ReactElement {
 
           {/* NavLink */}
           <Route path="/nav-link" element={<NavLink />} />
+
+          {/* redux语法 */}
+          <Route path="/redux" element={<Redux />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -99,7 +103,8 @@ function Layout(): React.ReactElement {
       <Link to="/auth">权限验证 | </Link>
       <Link to="/use-navigate">useNavigate | </Link>
       <Link to="/use-outlet-context">useOutletContext | </Link>
-      <Link to="/nav-link">NavLink</Link>
+      <Link to="/nav-link">NavLink | </Link>
+      <Link to="/redux">redux语法</Link>
       <Outlet context={[count, setCount]} />
     </>
   );

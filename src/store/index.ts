@@ -1,13 +1,13 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
-import reducer from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import routineSlice from './routineSlice';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-  : compose;
+const store = configureStore({
+  reducer: {
+    routine: routineSlice
+  }
+});
 
-const enhancer = composeEnhancers(applyMiddleware(reduxThunk));
-
-const store = createStore(reducer, enhancer);
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;
