@@ -13,6 +13,14 @@ function UseNavigate(): React.ReactElement {
 
       <p>-------------------------------</p>
 
+      <p>js传参方式</p>
+      <p>js传参刷新页面，参数并不会被清空</p>
+      <p onClick={() => navigate('/use-location', { state: { id: 123 } })}>
+        跳转useLocation页面
+      </p>
+
+      <p>-------------------------------</p>
+
       <p>v6 navigate('/home');</p>
       <p>v5 history.push('/home')</p>
 

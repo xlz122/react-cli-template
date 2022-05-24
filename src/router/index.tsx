@@ -12,6 +12,7 @@ import Parameter from '../views/parameter/Parameter';
 import SearchParams from '../views/search-params/SearchParams';
 import Auth from '../views/auth/Auth';
 import UseNavigate from '../views/use-navigate/UseNavigate';
+import UseLocation from '../views/use-location/UseLocation';
 import UseOutletContext from '../views/use-outlet-context/UseOutletContext';
 import NavLink from '../views/nav-link/NavLink';
 import Redux from '../views/redux/redux';
@@ -64,8 +65,11 @@ function AppRouter(): React.ReactElement {
           {/* 权限验证 */}
           <Route path="/auth/*" element={<Auth />} />
 
-          {/* useHistory */}
+          {/* useNavigate(旧语法 useHistory) */}
           <Route path="/use-navigate" element={<UseNavigate />} />
+
+          {/* useLocation */}
+          <Route path="/use-location" element={<UseLocation />} />
 
           {/* useOutletContext */}
           <Route path="/use-outlet-context" element={<UseOutletContext />} />
@@ -102,6 +106,7 @@ function Layout(): React.ReactElement {
       <Link to="/search-params?name=xyc">url ?拼接参数 | </Link>
       <Link to="/auth">权限验证 | </Link>
       <Link to="/use-navigate">useNavigate | </Link>
+      <Link to="/use-location">useLocation | </Link>
       <Link to="/use-outlet-context">useOutletContext | </Link>
       <Link to="/nav-link">NavLink | </Link>
       <Link to="/redux">redux语法</Link>
