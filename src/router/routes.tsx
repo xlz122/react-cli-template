@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { Link, Navigate, useRoutes, Outlet } from 'react-router-dom';
-import Home from '../views/Home';
 import Basic from '../views/basic/Basic';
 import LazyLoading from '../views/lazy-loading/LazyLoading';
 import About from '../views/about/About';
@@ -17,40 +16,46 @@ import UseOutletContext from '../views/use-outlet-context/UseOutletContext';
 import NavLink from '../views/nav-link/NavLink';
 import NotFound from '../views/not-found/NotFound';
 
-export default function Element() {
-  const routes = useRoutes([
-    {
-      path: '/',
-      element: <Layout />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: '/basic/*', element: <Basic /> },
-        { path: '/lazy-loading/*', element: <LazyLoading /> },
-        {
-          path: '/about',
-          element: <About />,
-          children: [
-            { index: true, element: <Default /> },
-            { path: '/about/bar', element: <Bar /> },
-            { path: '/about/foo', element: <Foo /> },
-            { path: '*', element: <Navigate to="/use-navigate" /> }
-          ]
-        },
-        { path: '/nested-route/*', element: <NestedRoute /> },
-        { path: '/parameter/:id', element: <Parameter userId={1} /> },
-        { path: '/search-params', element: <SearchParams /> },
-        { path: '/auth/*', element: <Auth /> },
-        { path: '/use-navigate', element: <UseNavigate /> },
-        { path: '/use-location', element: <UseLocation /> },
-        { path: '/use-outlet-context', element: <UseOutletContext /> },
-        { path: '/nav-link', element: <NavLink /> }
-      ]
-    },
-    { path: '*', element: <NotFound /> }
-  ]);
+function lazy(path: string): React.ReactElement {
+  const Component = React.lazy(() => import(`../${path}.tsx`));
 
-  return routes;
+  return (
+    <Suspense fallback={<></>}>
+      <Component />
+    </Suspense>
+  );
 }
+
+export const routes = [
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: lazy('../views/Home') },
+      { path: '/basic/*', element: <Basic /> },
+      { path: '/lazy-loading/*', element: <LazyLoading /> },
+      {
+        path: '/about',
+        element: <About />,
+        children: [
+          { index: true, element: <Default /> },
+          { path: '/about/bar', element: <Bar /> },
+          { path: '/about/foo', element: <Foo /> },
+          { path: '*', element: <Navigate to="/use-navigate" /> }
+        ]
+      },
+      { path: '/nested-route/*', element: <NestedRoute /> },
+      { path: '/parameter/:id', element: <Parameter userId={1} /> },
+      { path: '/search-params', element: <SearchParams /> },
+      { path: '/auth/*', element: <Auth /> },
+      { path: '/use-navigate', element: <UseNavigate /> },
+      { path: '/use-location', element: <UseLocation /> },
+      { path: '/use-outlet-context', element: <UseOutletContext /> },
+      { path: '/nav-link', element: <NavLink /> }
+    ]
+  },
+  { path: '*', element: <NotFound /> }
+];
 
 function Layout(): React.ReactElement {
   const [count, setCount] = useState(0);
@@ -73,3 +78,9 @@ function Layout(): React.ReactElement {
     </>
   );
 }
+
+function Element(): React.ReactElement {
+  return useRoutes(routes);
+}
+
+export default Element;
